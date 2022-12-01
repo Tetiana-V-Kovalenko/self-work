@@ -1,0 +1,39 @@
+.footer{
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    background-color: var(--footer-bg-color);
+}
+
+.footer__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    @include mq(tab) {
+        flex-direction: row;
+        gap: 0;
+    }
+}
+
+.footer__wrap{
+    display: flex;
+    gap: 10px;
+}
+
+.footer__text{
+    font-size: 16px;
+    line-height: 1.19;
+
+    color: var(--secondary-text-color);
+
+    @include mq(mob-only) {
+        font-size: 14px;
+        line-height: calc(16/14);
+    }
+}
+
+.footer__accent-text{
+    text-decoration: underline;
+}

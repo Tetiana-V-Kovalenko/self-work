@@ -1,0 +1,130 @@
+.nav_group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-group {
+  margin-right: auto;
+
+  &_link {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.logo-filmoteka {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: calc(35.16 / 30);
+
+  &:hover, &:focus {
+    color: var(--secondary-accent-color);
+  }
+}
+
+@include mq(mob-only) {
+  .logo-filmoteka {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+}
+
+.header_icon-film {
+  stroke: var(--pure-white-color);
+  stroke: var(--pure-white-color);
+  margin-right: 10px;
+}
+
+.header_nav-list {
+  padding-top: 9px;
+  display: inline-flex;
+  gap: 40px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.header_nav-link {
+  &:hover, &:focus {
+    color: var(--secondary-accent-color);
+    border-bottom: solid 3px var(--pure-white-color);
+  }
+}
+
+.header_nav-link-current {
+    border-bottom: solid 3px var(--secondary-accent-color);
+
+    &:hover, &:focus {
+    color: var(--secondary-accent-color);
+    border-bottom: solid 3px var(--pure-white-color);
+  }
+}
+
+.search-form {
+  display: flex;
+  border-bottom: 0.5px solid var(--pure-white-color);
+  margin: 40px auto 20px auto;
+  width: 394px;
+  justify-content: space-between;
+}
+
+@include mq(tab-only) {
+  .search-form {
+    width: 336px;
+  }
+}
+
+@include mq(mob-only) {
+  .search-form {
+    width: 280px;
+    margin-top: 54px;
+    margin-bottom: 16px;
+  }
+}
+
+.header_search-input {
+  background-color: transparent;
+  border: none;
+  color: var(--pure-white-color);
+  font-size: 14px;
+  line-height: calc(16.41/14);
+  padding: 0;
+  width: 382px;
+
+  &:focus {
+   outline: none;
+  }
+
+}
+
+.homepage_search-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+
+  &:focus,
+  &:hover {
+    outline: none;
+    color: var(--secondary-accent-color);
+   }
+}
+
+.header_icon-search {
+  fill: none;
+  stroke: var(--pure-white-color);
+  stroke: var(--pure-white-color);
+}
+
+.search-notify-failure {
+  font-size: 14px;
+  color: var(--secondary-accent-color);
+  text-align: center;
+}
