@@ -1,4 +1,5 @@
 'use strict';
+import axios from 'axios';
 import { fetchMovieBuId } from './fatch-movie-by-id';
 import createModalMurkupById from '../tamlates/modal.hbs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -13,7 +14,24 @@ const refs = {
   backdropEl: document.querySelector('.backdrop'),
   galleryEl: document.querySelector('.gallery'),
 };
+let instance;
+async function fetchAndCreateTrailer(id) {
+  const responseWithVideo = await axios.get(
+    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=9cda16d98a6e510af2decf0d66e8e7d5&language=en-US`
+  );
 
+  instance = basicLightbox.create(
+    `
+  <iframe class='iframe' width="560" height="315" src="https://www.youtube.com/embed/${responseWithVideo.data.results[0].key}" frameborder="0" allowfullscreen></iframe>
+`
+  );
+  instance.show();
+}
+// const instance = basicLightbox.create(
+//   `
+//   <iframe class='iframe' width="560" height="315" src="https://www.youtube.com/embed/${some}" frameborder="0" allowfullscreen></iframe>
+// `
+// );
 async function onGalleryClick(e) {
   const item = e.target.closest('.gallery_card');
   const idMovie = item.dataset.id;
@@ -48,20 +66,16 @@ async function onGalleryClick(e) {
 
   refs.btnAddWatched.addEventListener('click', addSelectedWatched);
   refs.btnAddQueue.addEventListener('click', addSelectedQueue);
-  refs.btnTrailer.onclick = () => {
-    basicLightbox
-      .create(
-        `
-		<iframe class='iframe' width="560" height="315" src="https://www.youtube.com/embed/Scxs7L0vhZ4" frameborder="0" allowfullscreen></iframe>
-	`
-      )
-      .show();
-  };
+
+  refs.btnTrailer.addEventListener('click', async e => {
+    const imgSelected = document.querySelector('.modal__img');
+    const idMovie = imgSelected.dataset.id;
+
+    console.log(idMovie);
+    await fetchAndCreateTrailer(idMovie);
+  });
 }
 
-// function openTrailerModal() {
-
-// }
 function closeModal() {
   document.removeEventListener('keydown', onEscDown);
   refs.backdropEl.removeEventListener('click', onBackdropClick);
@@ -71,12 +85,14 @@ function closeModal() {
 
 function onEscDown(e) {
   if (e.code === 'Escape') {
+    instance.close();
     closeModal();
   }
 }
 
 function onBackdropClick(e) {
   if (e.target.classList.contains('backdrop')) {
+    instance.close();
     closeModal();
   }
 }
