@@ -1,0 +1,35 @@
+@mixin font-h1 {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: calc(34 / 30);
+}
+@mixin font-title {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(22 / 20);
+}
+@mixin font-button {
+  font-family: 'PT Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: calc(18 / 16);
+}
+@mixin font-body-bold {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: calc(20 / 14);
+}
+@mixin font-body-reg {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: calc(20 / 14);
+} ;
